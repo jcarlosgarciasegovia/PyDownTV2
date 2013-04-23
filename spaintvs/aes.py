@@ -124,7 +124,6 @@ class AES:
         base = Base64() 
         ciphertext = base.encode(ciphertext)
           
-        #alert((new Date()) - t);
         return ciphertext
     
     def expires(self):
