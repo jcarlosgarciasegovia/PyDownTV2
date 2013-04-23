@@ -121,8 +121,7 @@ class AES:
                       
         # Array.join is more efficient than repeated string concatenation in IE
         ciphertext = ctrTxt + ''.join(ciphertxt)
-        base = Base64() 
-        ciphertext = base.encode(ciphertext)
+        ciphertext = base64.b64encode(ciphertext)
           
         return ciphertext
     
@@ -278,44 +277,3 @@ class AES:
         else:
             a = (a >> b)
         return a
-
-class Base64:
-    CODE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    
-    def encode (self, str) :  # http://tools.ietf.org/html/rfc4648       
-                   
-        b64 = self.CODE
-        plain = str
-        pad = ''
-        c = len(plain) % 3;  # pad string to length of multiple of 3
-        if (c > 0):
-            while (c < 3) :
-                pad += '=' 
-                plain += '\0' 
-                c = c + 1
-                
-        # note: doing padding here saves us doing special-case packing for trailing 1 or 2 chars
-        c=0
-        e = [0] * int(math.ceil(float(len(plain)) / float(3)))
-        while(c<len(plain)): # pack three octets into four hexets
-            o1 = ord(plain[c])
-            o2 = ord(plain[c+1])
-            o3 = ord(plain[c+2])
-            bits = o1<<16 | o2<<8 | o3
-          
-            h1 = bits>>18 & 0x3f
-            h2 = bits>>12 & 0x3f
-            h3 = bits>>6 & 0x3f
-            h4 = bits & 0x3f
-        
-            # use hextets to index into code string
-            e[c/3] = b64[h1] + b64[h2] + b64[h3] + b64[h4]
-            
-            c = c+3
-            
-        coded =  ''.join(e)  #join() is far faster than repeated string concatenation in IE
-      
-        # replace 'A's from padded nulls with '='s
-        coded = coded[0 : len(coded)-len(pad)] + pad
-       
-        return coded
