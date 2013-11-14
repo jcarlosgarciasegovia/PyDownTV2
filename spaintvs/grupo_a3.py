@@ -429,7 +429,6 @@ class GrupoA3(Canal.Canal):
     def atresplayer(self):
         getEpisodeUrl = "http://servicios.atresplayer.com/episode/get?episodePk="
         locationHTTP2down = "desprogresiva.antena3.com/"
-        #locationHTTP2down = "tcdn.desprogresiva.antena3.com/"
         locationRTMP2down = "a3premiumtkfs.fplive.net/"
         locationQ = "deswowa3player.antena3.com/"
 
