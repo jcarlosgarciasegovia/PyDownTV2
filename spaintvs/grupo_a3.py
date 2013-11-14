@@ -46,10 +46,7 @@ class GrupoA3(Canal.Canal):
     URL_DE_DESCARGA = "http://desprogresiva.antena3.com/"
     URL_DE_DESCARGA_LA_SEXTA = "http://deslasexta.antena3.com/"
     URL_DE_F1 = "http://www.antena3.com/gestorf1/xml_visor/"
-    URL_VISOR_F1 = "http://www.antena3.com/gestorf1/static_visor/"
-    P = "http://aabilio.me/p/browse.php?f=norefer&u="
 
-    URL_API_TIME = "http://servicios.atresplayer.com/api/admin/time"
     URL_EPISODE_INFO = "http://servicios.atresplayer.com/episode/get?episodePk="
 
     def __init__(self, url="", opcs=None):
