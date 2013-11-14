@@ -51,10 +51,6 @@ class GrupoA3(Canal.Canal):
     URL_API_TIME = "http://servicios.atresplayer.com/api/admin/time"
     URL_EPISODE_INFO = "http://servicios.atresplayer.com/episode/get?episodePk="
 
-    '''
-        Clase para manejar los vídeos de la RTVE (todos).
-    '''
-    
     def __init__(self, url="", opcs=None):
         Canal.Canal.__init__(self, url, opcs, url_validas, __name__)
         
