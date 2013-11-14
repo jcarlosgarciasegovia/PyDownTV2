@@ -387,7 +387,7 @@ class GrupoA3(Canal.Canal):
         stream = Descargar.get(self.url)
         episode = re.findall('episode="(.*)">', stream)[0]
         header = {"Accept":"application/json"}
-        j = json.loads(Descargar.getHtmlHeaders("http://servicios.atresplayer.com/episode/get?episodePk="+episode, header=header))
+        j = json.loads(Descargar.getHtmlHeaders(self.URL_EPISODE_INFO+episode, header=header))
 
         url = Utiles.url_fix(self.__getApiMobileUrl(episode).replace("https://", "http://"))
         self.debug(unicode(url))
@@ -427,7 +427,6 @@ class GrupoA3(Canal.Canal):
 
 
     def atresplayer(self):
-        getEpisodeUrl = "http://servicios.atresplayer.com/episode/get?episodePk="
         locationHTTP2down = "desprogresiva.antena3.com/"
         locationRTMP2down = "a3premiumtkfs.fplive.net/"
         locationQ = "deswowa3player.antena3.com/"
@@ -436,8 +435,8 @@ class GrupoA3(Canal.Canal):
         streamHTML = Descargar.get(self.url)
         episode = re.findall('episode="(.*)">', streamHTML)[0]
         header = {"Accept":"application/json"}
-        j = json.loads(Descargar.getHtmlHeaders("http://servicios.atresplayer.com/episode/get?episodePk="+episode, header=header))
-        #j = json.loads(self.__get("http://servicios.atresplayer.com/episode/get?episodePk="+episode))
+        j = json.loads(Descargar.getHtmlHeaders(self.URL_EPISODE_INFO+episode, header=header))
+        #j = json.loads(self.__get(self.URL_EPISODE_INFO+episode))
         wowzaPath = j['wowzaPath'].replace("//", "/")
 
         # Flags
