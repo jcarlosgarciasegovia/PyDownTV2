@@ -31,6 +31,7 @@ import Canal
 import Descargar
 import Utiles
 import Error
+import urlparse
 
 
 url_validas = ["antena3.com", "lasexta.com", "lasextadeportes.com", "lasextanoticias.com", "atresplayer.com"]
@@ -403,7 +404,11 @@ class GrupoA3(Canal.Canal):
 
         title = u"%s %s".encode('utf-8') % (j['titleSection'].encode('utf-8'), j['titleDetail'].encode('utf-8'))
         desc = unicode(j['seoDescription']).encode('utf-8')
-        name = u"VideoAtresPlayer.mp4"
+        urlparsed = urlparse.urlparse(self.url)
+        pathsplit = urlparsed.path.split('/')
+        del pathsplit[:3]
+        name = u'_'.join(pathsplit)
+        name = name.replace('.html','.mp4')
         img = j['urlImage'].replace(".jpg", "06.jpg")
 
         return {"exito" : True,
